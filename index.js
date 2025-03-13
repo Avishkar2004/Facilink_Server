@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import bodyParser from "body-parser";
 import "dotenv/config";
 import mongoose from "mongoose";
 import blogRoutes from "./routes/blogRoutes.js";
@@ -9,11 +10,14 @@ const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT || 8000;
 
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: ["https://facilink-frontend.vercel.app"], // Allow frontend to access
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
+    allowedHeaders: true,
   })
 );
 
