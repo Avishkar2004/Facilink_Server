@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 8000;
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://facilink-server.vercel.app/"],
-    methods: ["POST", "GET"],
+    origin: ["https://facilink-frontend.vercel.app"], // Allow frontend to access
+    methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
   })
 );
