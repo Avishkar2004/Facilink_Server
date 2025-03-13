@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import "dotenv/config";
 import mongoose from "mongoose";
 import blogRoutes from "./routes/blogRoutes.js";
+import photoRotes from "./routes/photoRoutes.js";
 const app = express();
 
 const MONGO_URL = process.env.MONGO_URL;
@@ -14,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ["https://facilink-frontend.vercel.app"], // Allow frontend to access
+    origin: ["http://localhost:3000"], // Allow frontend to access
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true,
     allowedHeaders: true,
@@ -24,6 +25,9 @@ app.use(
 // Serve static files from the "uploads" folder
 app.use("/uploads", express.static("uploads"));
 app.use("/blogs", blogRoutes);
+
+app.use("/photos", express.static("photos"));
+app.use("/photos", photoRotes);
 
 // Connect to MongoDB first
 mongoose
